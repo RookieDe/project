@@ -85,7 +85,7 @@ public final class ResultVO implements Serializable {
      * @return map
      */
     public final static  Map<String, Object> failure(int code, String message) {
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<String, Object>(6);
         map.put("code", code);
         map.put("message", message);
         map.put("data", null);
@@ -93,5 +93,67 @@ public final class ResultVO implements Serializable {
         return map;
     }
 
+    public final static Map<String, Object> failure(ResultEnum resultEnum,Object data,Boolean success){
+        return getStringObjectMap(resultEnum,data,success);
+    }
+
+    public final static Map<String, Object> failure(ResultEnum resultEnum,Boolean success){
+        return getStringObjectMap(resultEnum,success);
+    }
+
+
+    /**
+     * 成功返回特定的状态码和信息
+     * @Date 2019/6/23 14:25
+     * @param resultEnum
+     * @return map
+     */
+    public final static Map<String, Object> result(ResultEnum resultEnum,Object data,Boolean success){
+        return getStringObjectMap(resultEnum,data,success);
+    }
+
+    private static  Map<String, Object> getStringObjectMap(ResultEnum resultEnum, Object data, Boolean success) {
+        Map<String, Object> map = new HashMap<>(6);
+        map.put("code", resultEnum.getCode());
+        map.put("message", resultEnum.getMessage());
+        map.put("data", data);
+        map.put("success",success);
+        return map;
+    }
+
+    /**
+     * 成功返回特定的状态码和信息
+     * @Date 2019/6/23 14:25
+     * @param resultEnum
+     * @return map
+     */
+    public final static  Map<String, Object> result(ResultEnum resultEnum, Boolean success) {
+        return getStringObjectMap(resultEnum,success);
+    }
+
+    private static Map<String, Object> getStringObjectMap(ResultEnum resultEnum, Boolean success) {
+        Map<String, Object> map = new HashMap<>(6);
+        map.put("code", resultEnum.getCode());
+        map.put("message", resultEnum.getMessage());
+        map.put("data", null);
+        map.put("success",success);
+        return map;
+    }
+
+    /**
+     * 成功返回特定的状态码和信息
+     * @Date 2019/6/23 14:25
+     * @param resultEnum
+     * @return map
+     */
+    public final static Map<String, Object> result(ResultEnum resultEnum, String jwtToken, Boolean success) {
+        Map<String, Object> map = new HashMap<>(6);
+        map.put("jwtToken",jwtToken);
+        map.put("code", resultEnum.getCode());
+        map.put("message", resultEnum.getMessage());
+        map.put("data", null);
+        map.put("success",success);
+        return map;
+    }
 
 }

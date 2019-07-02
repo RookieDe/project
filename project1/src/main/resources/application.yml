@@ -2,7 +2,7 @@ spring:
   datasource:
     username: root
     password: 123456
-    url: jdbc:mysql://localhost/springboot?serverTimezone=UTC&characterEncoding=utf-8
+    url: jdbc:mysql://localhost/springboot?characterEncoding=utf-8&useSSl=false&serverTimezone=GMT%2B8
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     #监控统计拦截的filters
@@ -32,10 +32,34 @@ spring:
           mergeSql: true
           slowSqlMillis: 5000
 
+  http:
+    encoding:
+      charset: utf-8
+      force: true
+      enabled: true
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
 
 #mybatis是独立节点，需要单独配置
 mybatis:
   mapper-locations: classpath*:mybatis/mapper/*.xml
-  type-aliases-package: com.deceen.demo.entity
+  type-aliases-package: com.example.project1.entity
   configuration:
     map-underscore-to-camel-case: true
+
+server:
+  servlet:
+    context-path: /project
+  port: 8085
+  tomcat:
+    uri-encoding: utf-8
+
+#自定义参数，可以迁移走
+token:
+  #token失效时间（不是refreshToken）(这是自定义的)(秒)
+  expirationSeconds: 300
+
+  #默认7天登录有效(根据业务更改)
+  validTime: 7

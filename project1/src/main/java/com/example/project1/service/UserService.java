@@ -12,4 +12,6 @@ import java.util.List;
 public interface UserService {
 
     List<User> getUser();
+
+    void register(String username, String password);
 }

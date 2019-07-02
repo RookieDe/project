@@ -1,6 +1,8 @@
 package com.example.project1.dao;
 
+import com.example.project1.entity.SelfUserDetails;
 import com.example.project1.entity.User;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,5 +15,9 @@ import java.util.List;
 @Repository
 public interface UserMapper {
 
-    List<User> getUser();
+    SelfUserDetails getUser(@Param("userName") String userName);
+
+    List<User> getUserList();
+
+    void register(@Param("username") String username,@Param("password") String password);
 }

@@ -1,13 +1,17 @@
 package com.example.project1.controller;
 
+import com.example.project1.common.Enums.ResultEnum;
+import com.example.project1.common.VO.ResultVO;
 import com.example.project1.entity.User;
 import com.example.project1.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * user控制层
@@ -31,5 +35,16 @@ public class UserController {
         return list;
     }
 
-    //ceshi
+    /**
+     * 简单注册功能
+     * @param username
+     * @param password
+     * @return
+     */
+    @PostMapping("/register")
+    public Map<String, Object> register(String username, String password){
+        userService.register(username,password);
+        return ResultVO.result(ResultEnum.SUCCESS,true);
+    }
+
 }
