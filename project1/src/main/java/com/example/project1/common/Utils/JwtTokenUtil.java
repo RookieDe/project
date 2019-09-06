@@ -3,6 +3,7 @@ package com.example.project1.common.Utils;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.InputStream;
 import java.security.KeyStore;
@@ -19,6 +20,10 @@ import java.util.Map;
  * @Version 1.0
  */
 public class JwtTokenUtil {
+
+
+    @Autowired
+    private static RedisUtil redisUtil;
 
     //寻找证书文件
     private static InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("jwt.jks");
@@ -47,15 +52,16 @@ public class JwtTokenUtil {
      * @return string
      * @Date 2019/6/24 23:01
      */
-    public static String generateToken(String subject, int expirationSeconds) {
+    public static String generateToken(String subject, int expirationSeconds,Map<String,Object> claims) {
         return Jwts.builder()
-                .setClaims(null)
+                .setClaims(claims)
                 .setSubject(subject)
                 .setExpiration(new Date(System.currentTimeMillis() + expirationSeconds * 1000))
 //                      .signWith(SignatureAlgorithm.ES512,salt)//不使用公钥私钥
                 .signWith(SignatureAlgorithm.ES256, privateKey)
                 .compact();
     }
+
 
     /**
      * 解析token,获得subject中的信息
@@ -93,8 +99,21 @@ public class JwtTokenUtil {
         return claims;
     }
 
-    public static boolean isExpiration(String token) {
-        return getTokenBody(token).getExpiration().before(new Date());
+    /**
+     * 是否已过期
+     * @param expirationTime
+     * @return
+     */
+    public static boolean isExpiration(String expirationTime) {
+        //return getTokenBody(token).getExpiration().before(new Date());
+        //通过redis中的失效时间进行判断
+        String currentTime = DateUtil.getTime();
+        if(DateUtil.compareDate(currentTime,expirationTime)) {
+            //当前时间比过期时间小，失效
+            return true;
+        }else {
+            return false;
+        }
     }
 
 
@@ -104,4 +123,6 @@ public class JwtTokenUtil {
                 .parseClaimsJws(token)
                 .getBody();
     }
+
+
 }
