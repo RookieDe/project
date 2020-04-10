@@ -14,6 +14,7 @@ import java.io.IOException;
 
 /**
  * 用户登陆失败返回数据
+ *
  * @Author RookieDe
  * @Date 2019/6/23 18:52
  * @Version 1.0
@@ -22,6 +23,6 @@ import java.io.IOException;
 public class AjaxAuthenticationFailureHandler implements AuthenticationFailureHandler {
     @Override
     public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
-        httpServletResponse.getWriter().write(JSON.toJSONString(ResultVO.result(ResultEnum.USER_LOGIN_FAILED,false)));
+        httpServletResponse.getWriter().write(JSON.toJSONString(ResultVO.result(ResultEnum.USER_LOGIN_FAILED, false)));
     }
 }

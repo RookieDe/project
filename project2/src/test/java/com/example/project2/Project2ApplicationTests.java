@@ -11,7 +11,7 @@ public class Project2ApplicationTests {
 
     @Test
     public void contextLoads() {
-        String classNmae =getClass().getSimpleName();
+        String classNmae = getClass().getSimpleName();
         System.err.println(classNmae);
     }
 

@@ -14,14 +14,14 @@ public class CollectionUtil {
      * @param key 所想取值的集合的key
      * @return 返回key对应的value
      */
-    public static String getMapValue(Map<String,Object> map,String key){
+    public static String getMapValue(Map<String, Object> map, String key) {
         String result = null;
-        if(map != null){
+        if (map != null) {
             Iterator<String> iterable = map.keySet().iterator();
-            while (iterable.hasNext()){
+            while (iterable.hasNext()) {
                 Object object = iterable.next();
-                if(key.equals(object)){
-                    if(map.get(object) != null){
+                if (key.equals(object)) {
+                    if (map.get(object) != null) {
                         result = map.get(object).toString();
                     }
                 }

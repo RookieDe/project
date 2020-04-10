@@ -14,6 +14,7 @@ import java.io.IOException;
 
 /**
  * 无权访问
+ *
  * @Author RookieDe
  * @Date 2019/6/23 18:48
  * @Version 1.0
@@ -22,6 +23,6 @@ import java.io.IOException;
 public class AjaxAccessDeniedHandler implements AccessDeniedHandler {
     @Override
     public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AccessDeniedException e) throws IOException, ServletException {
-        httpServletResponse.getWriter().write(JSON.toJSONString(ResultVO.result(ResultEnum.USER_NO_ACCESS,false)));
+        httpServletResponse.getWriter().write(JSON.toJSONString(ResultVO.result(ResultEnum.USER_NO_ACCESS, false)));
     }
 }

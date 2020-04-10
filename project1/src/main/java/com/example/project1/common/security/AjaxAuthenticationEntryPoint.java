@@ -13,6 +13,7 @@ import java.io.IOException;
 
 /**
  * 用户未登陆返回给前端的数据
+ *
  * @Author RookieDe
  * @Date 2019/6/23 17:57
  * @Version 1.0
@@ -21,6 +22,6 @@ import java.io.IOException;
 public class AjaxAuthenticationEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
-        httpServletResponse.getWriter().write(JSON.toJSONString(ResultEnum.USER_NEED_AUTHORITIES,false));
+        httpServletResponse.getWriter().write(JSON.toJSONString(ResultEnum.USER_NEED_AUTHORITIES, false));
     }
 }

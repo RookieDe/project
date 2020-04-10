@@ -9,18 +9,19 @@ import java.util.Set;
 
 /**
  * user对象
+ *
  * @Author RookieDe
  * @Date 2019/6/23 22:34
  * @Version 1.0
  */
-public class SelfUserDetails implements UserDetails,Serializable {
+public class SelfUserDetails implements UserDetails, Serializable {
 
 
     private static final long serialVersionUID = 5954585892173493594L;
 
     private Integer userId;
     private String username;
-     private String password;
+    private String password;
     private Set<? extends GrantedAuthority> authorities;
 
     @Override

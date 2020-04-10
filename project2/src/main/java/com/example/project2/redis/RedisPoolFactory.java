@@ -23,7 +23,7 @@ public class RedisPoolFactory {
     private RedisProperties redisProperties;
 
     @Bean
-    public JedisPool JedisPoolFactory(){
+    public JedisPool JedisPoolFactory() {
         JedisPoolConfig poolConfig = new JedisPoolConfig();
         poolConfig.setMaxIdle(redisProperties.getPoolMaxIdle());
         poolConfig.setMaxTotal(redisProperties.getPoolMaxTotal());
@@ -42,7 +42,7 @@ public class RedisPoolFactory {
         //表示一个对象至少停留在idle状态的最短时间，然后才能被idle object evitor扫描并驱逐；这一项只有在timeBetweenEvictionRunsMillis大于0时才有意义
         poolConfig.setMinEvictableIdleTimeMillis(60000);
         JedisPool jp = new JedisPool(poolConfig, redisProperties.getHost(), redisProperties.getPort(),
-                redisProperties.getTimeout()*1000, redisProperties.getPassword(), redisProperties.getDatabase());
+                redisProperties.getTimeout() * 1000, redisProperties.getPassword(), redisProperties.getDatabase());
         return jp;
     }
 }

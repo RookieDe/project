@@ -2,6 +2,7 @@ package com.example.project1.entity;
 
 /**
  * user实体类
+ *
  * @Author RookieDe
  * @Date 2019/6/13 20:58
  * @Version 1.0

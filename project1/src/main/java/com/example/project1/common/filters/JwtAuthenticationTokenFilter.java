@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -53,7 +54,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
             //进入黑名单验证
             if (redisUtil.isBlackList(authToken)) {
-                System.err.println("用户：{}的token：{}在黑名单之中，拒绝访问"+username+"----"+authToken);
+                System.err.println("用户：{}的token：{}在黑名单之中，拒绝访问" + username + "----" + authToken);
                 response.getWriter().write(JSON.toJSONString(ResultVO.result(ResultEnum.TOKEN_IS_BLACKLIST, false)));
                 return;
             }
@@ -64,17 +65,17 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
              * 同时，已过期的token加入黑名单
              */
             if (redisUtil.hasKey(authToken)) {//判断redis是否有保存
-                String expirationTime = redisUtil.hget(authToken,"expirationTime").toString();
+                String expirationTime = redisUtil.hget(authToken, "expirationTime").toString();
                 if (JwtTokenUtil.isExpiration(expirationTime)) {
                     //获得redis中用户的token刷新时效
                     String tokenValidTime = (String) redisUtil.getTokenValidTimeByToken(authToken);
                     String currentTime = DateUtil.getTime();
                     //这个token已作废，加入黑名单
-                    System.err.println("{}已作废，加入黑名单"+authToken);
+                    System.err.println("{}已作废，加入黑名单" + authToken);
                     redisUtil.hset("blacklist", authToken, DateUtil.getTime());
                     if (DateUtil.compareDate(currentTime, tokenValidTime)) {
                         //超过有效期，不予刷新
-                        System.err.println("{}已超过有效期，不予刷新"+authToken);
+                        System.err.println("{}已超过有效期，不予刷新" + authToken);
                         response.getWriter().write(JSON.toJSONString(ResultVO.result(ResultEnum.LOGIN_IS_OVERDUE, false)));
                         return;
                     } else {//仍在刷新时间内，则刷新token，放入请求头中
@@ -88,12 +89,12 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
                         //更新redis
                         Integer expire = validTime * 24 * 60 * 60 * 1000;//刷新时间
-                        redisUtil.setTokenRefresh(jwtToken,usernameByToken,ip);
+                        redisUtil.setTokenRefresh(jwtToken, usernameByToken, ip);
                         //删除旧的token保存的redis
                         redisUtil.deleteKey(authToken);
                         //新的token保存到redis中
-                        redisUtil.setTokenRefresh(jwtToken,username,ip);
-                        System.err.println("redis已删除旧token：{},新token：{}已更新redis"+authToken+"////"+jwtToken);
+                        redisUtil.setTokenRefresh(jwtToken, username, ip);
+                        System.err.println("redis已删除旧token：{},新token：{}已更新redis" + authToken + "////" + jwtToken);
                         authToken = jwtToken;//更新token，为了后面
                         response.setHeader("Authorization", "Bearer " + jwtToken);
                     }
@@ -107,10 +108,10 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                  * 如果ip不正确，进入黑名单验证
                  */
                 if (!StringUtil.equals(ip, currentIp)) {//地址不正确
-                    System.err.println("用户：{}的ip地址变动，进入黑名单校验"+username);
+                    System.err.println("用户：{}的ip地址变动，进入黑名单校验" + username);
                     //进入黑名单验证
                     if (redisUtil.isBlackList(authToken)) {
-                        System.err.println("用户：{}的token：{}在黑名单之中，拒绝访问"+username+"+++++"+authToken);
+                        System.err.println("用户：{}的token：{}在黑名单之中，拒绝访问" + username + "+++++" + authToken);
                         response.getWriter().write(JSON.toJSONString(ResultVO.result(ResultEnum.TOKEN_IS_BLACKLIST, false)));
                         return;
                     }

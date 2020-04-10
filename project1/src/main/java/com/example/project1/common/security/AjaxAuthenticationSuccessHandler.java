@@ -23,6 +23,7 @@ import java.util.Map;
 
 /**
  * 用户登陆成功返回的数据
+ *
  * @Author RookieDe
  * @Date 2019/6/23 18:54
  * @Version 1.0
@@ -41,23 +42,23 @@ public class AjaxAuthenticationSuccessHandler implements AuthenticationSuccessHa
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
-       //获取请求的ip地址
+        //获取请求的ip地址
         String ip = AccessAddressUtil.getIpAddress(httpServletRequest);
-        Map<String,Object> map = new HashMap<>();
-        map.put("ip",ip);
+        Map<String, Object> map = new HashMap<>();
+        map.put("ip", ip);
 
         SelfUserDetails userDetails = (SelfUserDetails) authentication.getPrincipal();
-        String jwtToken = JwtTokenUtil.generateToken(userDetails.getUsername(), 1500,map);
+        String jwtToken = JwtTokenUtil.generateToken(userDetails.getUsername(), 1500, map);
 
 
         //刷新时间
-        Integer expire = validTime*24*60*60*1000;
+        Integer expire = validTime * 24 * 60 * 60 * 1000;
 
         //获取请求的ip地址
         String currentIp = AccessAddressUtil.getIpAddress(httpServletRequest);
-        redisUtil.setTokenRefresh(jwtToken,userDetails.getUsername(),currentIp);
-        System.err.println("用户{}登录成功，信息已保存至redis"+userDetails.getUsername());
+        redisUtil.setTokenRefresh(jwtToken, userDetails.getUsername(), currentIp);
+        System.err.println("用户{}登录成功，信息已保存至redis" + userDetails.getUsername());
 
-        httpServletResponse.getWriter().write(JSON.toJSONString(ResultVO.result(ResultEnum.USER_LOGIN_SUCCESS,jwtToken,true)));
+        httpServletResponse.getWriter().write(JSON.toJSONString(ResultVO.result(ResultEnum.USER_LOGIN_SUCCESS, jwtToken, true)));
     }
 }

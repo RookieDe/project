@@ -12,13 +12,13 @@ import com.example.project2.redis.BasePrefix;
 public class DemoKey extends BasePrefix {
 
 
-    public DemoKey(String prefix){
+    public DemoKey(String prefix) {
         super(prefix);
     }
 
-    public DemoKey(int expireSeconds,String prefix){
-        super(expireSeconds,prefix);
+    public DemoKey(int expireSeconds, String prefix) {
+        super(expireSeconds, prefix);
     }
 
-    public static DemoKey getByKey = new DemoKey( 60,"oauth");
+    public static DemoKey getByKey = new DemoKey(60, "oauth");
 }

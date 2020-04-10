@@ -18,12 +18,13 @@ import java.util.Set;
 
 /**
  * 用户认证、权限
+ *
  * @Author RookieDe
  * @Date 2019/6/25 21:48
  * @Version 1.0
  */
 @Component
-public class SelfUserDetailsService  implements UserDetailsService {
+public class SelfUserDetailsService implements UserDetailsService {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -34,7 +35,7 @@ public class SelfUserDetailsService  implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         //通过username查询用户
         SelfUserDetails user = userMapper.getUser(username);
-        if(user == null){
+        if (user == null) {
             //仍需要细化处理
             throw new UsernameNotFoundException("该用户不存在");
         }
@@ -46,7 +47,7 @@ public class SelfUserDetailsService  implements UserDetailsService {
         authoritiesSet.add(authority);
         user.setAuthorities(authoritiesSet);
 
-        logger.info("用户{}",username);
+        logger.info("用户{}", username);
         return user;
     }
 }

@@ -17,6 +17,7 @@ import java.io.IOException;
 
 /**
  * 登出成功
+ *
  * @Author RookieDe
  * @Date 2019/6/23 19:00
  * @Version 1.0
@@ -35,8 +36,8 @@ public class AjaxLogoutSuccessHandler implements LogoutSuccessHandler {
             final String authToken = authHeader.substring("Bearer ".length());
             //将token放入黑名单中
             redisUtil.hset("blacklist", authToken, DateUtil.getTime());
-            System.err.println("token：{}已加入redis黑名单"+authToken);
+            System.err.println("token：{}已加入redis黑名单" + authToken);
         }
-        httpServletResponse.getWriter().write(JSON.toJSONString(ResultVO.result(ResultEnum.USER_LOGOUT_SUCCESS,true)));
+        httpServletResponse.getWriter().write(JSON.toJSONString(ResultVO.result(ResultEnum.USER_LOGOUT_SUCCESS, true)));
     }
 }

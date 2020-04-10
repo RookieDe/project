@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
         //因为只是简单注册，故只是对密码加密保存，其他就不添加进来了
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         String EncryptedPassword = bCryptPasswordEncoder.encode(password);
-        userMapper.register(username,EncryptedPassword);
+        userMapper.register(username, EncryptedPassword);
     }
 
 }

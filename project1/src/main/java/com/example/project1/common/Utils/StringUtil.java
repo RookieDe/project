@@ -1,5 +1,6 @@
 
 package com.example.project1.common.Utils;
+
 import java.util.UUID;
 
 
@@ -14,7 +15,7 @@ public class StringUtil {
      * @param str
      * @return
      */
-    public static boolean isEmpty(String str){
+    public static boolean isEmpty(String str) {
         if (str != null && !str.equals("")) {
             return false;
         }
@@ -40,9 +41,10 @@ public class StringUtil {
 
     /**
      * 生成uuid
+     *
      * @return
      */
-    public static String getUUID(){
+    public static String getUUID() {
         return UUID.randomUUID().toString();
     }
 }

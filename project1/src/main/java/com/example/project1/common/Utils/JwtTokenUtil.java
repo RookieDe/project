@@ -52,7 +52,7 @@ public class JwtTokenUtil {
      * @return string
      * @Date 2019/6/24 23:01
      */
-    public static String generateToken(String subject, int expirationSeconds,Map<String,Object> claims) {
+    public static String generateToken(String subject, int expirationSeconds, Map<String, Object> claims) {
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(subject)
@@ -70,7 +70,7 @@ public class JwtTokenUtil {
      * @return map
      * @Date 2019/6/24 23:06
      */
-    public static String  parseToken(String token, String salt) {
+    public static String parseToken(String token, String salt) {
         String subject = null;
         try {
             /*Claims claims = Jwts.parser()
@@ -101,6 +101,7 @@ public class JwtTokenUtil {
 
     /**
      * 是否已过期
+     *
      * @param expirationTime
      * @return
      */
@@ -108,10 +109,10 @@ public class JwtTokenUtil {
         //return getTokenBody(token).getExpiration().before(new Date());
         //通过redis中的失效时间进行判断
         String currentTime = DateUtil.getTime();
-        if(DateUtil.compareDate(currentTime,expirationTime)) {
+        if (DateUtil.compareDate(currentTime, expirationTime)) {
             //当前时间比过期时间小，失效
             return true;
-        }else {
+        } else {
             return false;
         }
     }

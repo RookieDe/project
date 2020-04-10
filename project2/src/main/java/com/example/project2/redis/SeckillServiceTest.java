@@ -12,7 +12,7 @@ import java.util.Random;
  * Copyright © 2018 Shanghai Yejia Digital Technology Co., Ltd. All rights reserved.
  * 模拟秒杀场景测试类
  *
- *  @author chenhongde
+ * @author chenhongde
  * @ClassName RedisLock
  * @date 2019/9/9 14:39
  */
@@ -22,14 +22,15 @@ public class SeckillServiceTest {
     @Autowired
     private RedisLock redisLock;
 
-    private static final int TIMEOUT = 120*1000;//超时时间 120s
+    private static final int TIMEOUT = 120 * 1000;//超时时间 120s
 
     /**
      * 活动，特价，限量100000份
      */
-    static Map<String,Integer> products;//模拟商品信息表
-    static Map<String,Integer> stock;//模拟库存表
-    static Map<String,String> orders;//模拟下单成功用户表
+    static Map<String, Integer> products;//模拟商品信息表
+    static Map<String, Integer> stock;//模拟库存表
+    static Map<String, String> orders;//模拟下单成功用户表
+
     static {
         /**
          * 模拟多个表，商品信息表，库存表，秒杀成功订单表
@@ -37,16 +38,16 @@ public class SeckillServiceTest {
         products = new HashMap<>();
         stock = new HashMap<>();
         orders = new HashMap<>();
-        products.put("123456",100000);
-        stock.put("123456",100000);
+        products.put("123456", 100000);
+        stock.put("123456", 100000);
     }
 
-    private String queryMap(String productId){//模拟查询数据库
+    private String queryMap(String productId) {//模拟查询数据库
         return "国庆活动，皮蛋特教，限量"
-                +products.get(productId)
-                +"份,还剩:"+stock.get(productId)
-                +"份,该商品成功下单用户数:"
-                +orders.size()+"人";
+                + products.get(productId)
+                + "份,还剩:" + stock.get(productId)
+                + "份,该商品成功下单用户数:"
+                + orders.size() + "人";
     }
 
     public String querySecKillProductInfo(String productId) {
@@ -63,25 +64,25 @@ public class SeckillServiceTest {
 
         //加锁
         long time = System.currentTimeMillis() + TIMEOUT;
-        if(!redisLock.lock(SeckillOrderKey.getByName, productId, String.valueOf(time))){
+        if (!redisLock.lock(SeckillOrderKey.getByName, productId, String.valueOf(time))) {
             throw new Exception("很抱歉，人太多了，换个姿势再试试~~");
         }
 
         //1.查询该商品库存，为0则活动结束
         int stockNum = stock.get(productId);
-        if(stockNum==0){
+        if (stockNum == 0) {
             throw new Exception("活动结束");
-        }else {
+        } else {
             //2.下单
-            orders.put(getUniqueKey(),productId);
+            orders.put(getUniqueKey(), productId);
             //3.减库存
-            stockNum =stockNum-1;//不做处理的话，高并发下会出现超卖的情况，下单数，大于减库存的情况。虽然这里减了，但由于并发，减的库存还没存到map中去。新的并发拿到的是原来的库存
-            try{
+            stockNum = stockNum - 1;//不做处理的话，高并发下会出现超卖的情况，下单数，大于减库存的情况。虽然这里减了，但由于并发，减的库存还没存到map中去。新的并发拿到的是原来的库存
+            try {
                 Thread.sleep(10000);//模拟减库存的处理时间
-            }catch (InterruptedException e){
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            stock.put(productId,stockNum);
+            stock.put(productId, stockNum);
         }
 
         //解锁
@@ -89,9 +90,9 @@ public class SeckillServiceTest {
 
     }
 
-    public static synchronized String getUniqueKey(){//加一个锁
+    public static synchronized String getUniqueKey() {//加一个锁
         Random random = new Random();
         Integer number = random.nextInt(900000) + 100000;//随机六位数
-        return System.currentTimeMillis()+String.valueOf(number);
+        return System.currentTimeMillis() + String.valueOf(number);
     }
 }

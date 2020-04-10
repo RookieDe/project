@@ -18,5 +18,5 @@ public class SeckillOrderKey extends BasePrefix {
         super(expireSeconds, prefix);
     }
 
-    public static SeckillOrderKey getByName = new SeckillOrderKey(10,"seckill");
+    public static SeckillOrderKey getByName = new SeckillOrderKey(10, "seckill");
 }
