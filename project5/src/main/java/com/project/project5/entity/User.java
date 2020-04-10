@@ -1,20 +1,32 @@
 package com.project.project5.entity;
 
+import io.swagger.annotations.ApiModelProperty;
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 /**
- * Shanghai yejia Diaital Technology Co.,Ltd.
+ * Shanghai *** Technology Co.,Ltd.
  *
- * @author chenhongde
+ * @author RookieDe
  * @ClassName User
  * @date 2020/4/9 9:59
  */
 public class User {
 
+    @ApiModelProperty("用户id")
+    @NotNull(message = "userId不能为空")
     private Integer userId;
 
+    @ApiModelProperty("用户名称")
+    @NotEmpty(message = "userName不能为空")
     private String userName;
 
+    @ApiModelProperty("用户密码")
+    @NotEmpty(message = "password不能为空")
     private String password;
 
+    @ApiModelProperty("角色")
     private String role;
 
     public Integer getUserId() {

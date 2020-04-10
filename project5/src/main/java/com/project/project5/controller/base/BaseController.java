@@ -13,9 +13,9 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Shanghai yejia Diaital Technology Co.,Ltd.
+ * Shanghai *** Technology Co.,Ltd.
  *
- * @author chenhongde
+ * @author RookieDe
  * @ClassName BaseController
  * @date 2020/4/10 13:13
  */

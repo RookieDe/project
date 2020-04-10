@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * Shanghai yejia Diaital Technology Co.,Ltd.
+ * Shanghai *** Technology Co.,Ltd.
  *
- * @author chenhongde
+ * @author RookieDe
  * @ClassName UserService
  * @date 2020/4/9 10:47
  */

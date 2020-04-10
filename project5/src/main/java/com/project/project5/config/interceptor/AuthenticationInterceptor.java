@@ -18,9 +18,9 @@ import javax.xml.ws.handler.Handler;
 import java.lang.reflect.Method;
 
 /**
- * Shanghai yejia Diaital Technology Co.,Ltd.
+ * Shanghai *** Technology Co.,Ltd.
  *
- * @author chenhongde
+ * @author RookieDe
  * @ClassName AuthenticationInterceptor
  * @date 2020/4/9 17:34
  */

@@ -1,9 +1,9 @@
 package com.project.project5.dto.loginDTO.request;
 
 /**
- * Shanghai yejia Diaital Technology Co.,Ltd.
+ * Shanghai *** Technology Co.,Ltd.
  *
- * @author chenhongde
+ * @author RookieDe
  * @ClassName LoginUser
  * @date 2020/4/9 14:40
  */

@@ -6,9 +6,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Shanghai yejia Diaital Technology Co.,Ltd.
+ * Shanghai *** Technology Co.,Ltd.
  * 跳过日志注解
- * @author chenhongde
+ * @author RookieDe
  * @ClassName PassLogger
  * @date 2020/4/2 16:40
  */

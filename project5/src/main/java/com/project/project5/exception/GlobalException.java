@@ -3,9 +3,9 @@ package com.project.project5.exception;
 import com.project.project5.enums.ExceptionEnums;
 
 /**
- * Shanghai yejia Diaital Technology Co.,Ltd.
+ * Shanghai *** Technology Co.,Ltd.
  *
- * @author chenhongde
+ * @author RookieDe
  * @ClassName GlobalException
  * @date 2020/4/9 18:39
  */

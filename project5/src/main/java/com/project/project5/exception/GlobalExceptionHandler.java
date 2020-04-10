@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 /**
- * Shanghai yejia Diaital Technology Co.,Ltd.
+ * Shanghai *** Technology Co.,Ltd.
  *
- * @author chenhongde
+ * @author RookieDe
  * @ClassName GlobalExceptionHandler
  * @date 2020/4/10 11:16
  */
@@ -22,9 +22,9 @@ public class GlobalExceptionHandler {
     public Object handleException(Exception e){
         if (e instanceof GlobalException){
             GlobalException globalException = (GlobalException)e;
-            return ResultUtils.error(globalException.getEnums().getCode(),e.getMessage()+"-错误代码信息：-"+e.getStackTrace()[0]);
+            return ResultUtils.error(globalException.getEnums().getCode(),e.getMessage());
         }else {
-            return ResultUtils.error(ExceptionEnums.SERVER_ERROR.getCode(),e.getMessage()+"-错误代码信息：-"+e.getStackTrace()[0]);
+            return ResultUtils.error(ExceptionEnums.SERVER_ERROR.getCode(),e.getMessage());
         }
     }
 }

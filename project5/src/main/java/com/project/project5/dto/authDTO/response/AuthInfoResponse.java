@@ -1,9 +1,9 @@
 package com.project.project5.dto.authDTO.response;
 
 /**
- * Shanghai yejia Diaital Technology Co.,Ltd.
+ * Shanghai *** Technology Co.,Ltd.
  *
- * @author chenhongde
+ * @author RookieDe
  * @ClassName AuthInfoResponse
  * @date 2020/4/10 13:21
  */

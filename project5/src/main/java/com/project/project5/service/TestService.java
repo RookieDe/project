@@ -4,9 +4,9 @@ import com.project.project5.config.InitConfig;
 import org.springframework.stereotype.Service;
 
 /**
- * Shanghai yejia Diaital Technology Co.,Ltd.
+ * Shanghai *** Technology Co.,Ltd.
  *
- * @author chenhongde
+ * @author RookieDe
  * @ClassName testService
  * @date 2020/4/2 11:33
  */

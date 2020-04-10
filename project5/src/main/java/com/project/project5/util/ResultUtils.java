@@ -3,9 +3,9 @@ package com.project.project5.util;
 import com.project.project5.entity.Response;
 
 /**
- * Shanghai yejia Diaital Technology Co.,Ltd.
+ * Shanghai *** Technology Co.,Ltd.
  *
- * @author chenhongde
+ * @author RookieDe
  * @ClassName ResultUtil
  * @date 2020/4/10 11:51
  */

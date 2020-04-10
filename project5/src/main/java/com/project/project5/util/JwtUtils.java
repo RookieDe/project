@@ -11,9 +11,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Shanghai yejia Diaital Technology Co.,Ltd.
+ * Shanghai *** Technology Co.,Ltd.
  *
- * @author chenhongde
+ * @author RookieDe
  * @ClassName JwtUtils
  * @date 2020/4/9 10:01
  */
@@ -152,7 +152,7 @@ public class JwtUtils {
 
         User user = new User();
         user.setUserId(1101);
-        user.setUserName("chenhongde");
+        user.setUserName("RookieDe");
         String token = generateJsonWebToken(user);
 
         System.out.println(token);

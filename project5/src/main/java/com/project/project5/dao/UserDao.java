@@ -4,9 +4,9 @@ import com.project.project5.entity.User;
 import org.springframework.stereotype.Repository;
 
 /**
- * Shanghai yejia Diaital Technology Co.,Ltd.
+ * Shanghai *** Technology Co.,Ltd.
  *
- * @author chenhongde
+ * @author RookieDe
  * @ClassName UserDao
  * @date 2020/4/9 10:48
  */

@@ -22,9 +22,9 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 
 /**
- * Shanghai yejia Diaital Technology Co.,Ltd.
+ * Shanghai *** Technology Co.,Ltd.
  * 切面日志
- * @author chenhongde
+ * @author RookieDe
  * @ClassName LogAspect
  * @date 2020/4/2 14:30
  */

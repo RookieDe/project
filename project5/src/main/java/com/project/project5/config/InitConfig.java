@@ -7,9 +7,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Shanghai yejia Diaital Technology Co.,Ltd.
+ * Shanghai *** Technology Co.,Ltd.
  *  初始化字典
- * @author chenhongde
+ * @author RookieDe
  * @ClassName InitConfig
  * @date 2020/4/2 10:27
  */
