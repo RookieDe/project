@@ -1,4 +1,4 @@
-package com.project.project5.util;
+package com.project.project5.redis;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisConnectionUtils;

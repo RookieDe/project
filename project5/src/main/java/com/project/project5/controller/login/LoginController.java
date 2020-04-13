@@ -3,8 +3,10 @@ package com.project.project5.controller.login;
 import com.project.project5.entity.TokenInfo;
 import com.project.project5.entity.User;
 import com.project.project5.enums.ExceptionEnums;
+import com.project.project5.redis.KeyPrefix;
+import com.project.project5.redis.key.TokenKey;
 import com.project.project5.util.JwtUtils;
-import com.project.project5.util.RedisUtil;
+import com.project.project5.redis.RedisUtil;
 import com.project.project5.util.ResultUtils;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +28,7 @@ public class LoginController {
     @Autowired
     private RedisUtil redisUtil;
 
-    private static final long CACHE_TTL = 7100;
+    private static final int CACHE_TTL = 7200;
 
     /**
      * 获取token
@@ -44,7 +46,8 @@ public class LoginController {
             tokenInfo.setUserId(user.getUserId());
             tokenInfo.setUserName(user.getUserName());
             tokenInfo.setRole(user.getRole());
-            redisUtil.set(user.getUserId()+"",tokenInfo,CACHE_TTL);
+            String tokenKey = TokenKey.withExpire(CACHE_TTL).getPrefix() + user.getUserId();
+            redisUtil.set(tokenKey,tokenInfo,CACHE_TTL);
             return ResultUtils.success(tokenInfo);
         }
     }
