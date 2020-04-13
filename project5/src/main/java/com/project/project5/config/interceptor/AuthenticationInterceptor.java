@@ -6,7 +6,6 @@ import com.project.project5.enums.ExceptionEnums;
 import com.project.project5.exception.GlobalException;
 import com.project.project5.util.JwtUtils;
 import io.jsonwebtoken.Claims;
-import org.omg.PortableInterceptor.Interceptor;
 import org.springframework.util.StringUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -14,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.ws.handler.Handler;
 import java.lang.reflect.Method;
 
 /**
@@ -54,7 +52,9 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         String token = tokens.split(" ")[1];
 
         //校验token
-        if (JwtUtils.isExpiration(token)){
+        try {
+            JwtUtils.isExpiration(token);
+        }catch (Exception e){
             throw new GlobalException(ExceptionEnums.LOGINOUT);
         }
 
