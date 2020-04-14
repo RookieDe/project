@@ -9,3 +9,4 @@
 -[ ] mybatis配置，sql拦截器统计时间
 -[ ] 定时任务
 -[ ] swagger配置
+-[ ] event事件监听
