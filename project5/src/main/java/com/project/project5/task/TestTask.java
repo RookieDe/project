@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  * @date 2020/4/10 16:49
  */
 @Component
-@ConditionalOnProperty(name = "rookie.task.open", havingValue = "true")
+@ConditionalOnProperty(name = "rookie.task.open", havingValue = "false")
 public class TestTask {
 
     //Cron表达式范例：

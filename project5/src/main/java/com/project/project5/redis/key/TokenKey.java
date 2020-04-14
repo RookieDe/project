@@ -3,9 +3,9 @@ package com.project.project5.redis.key;
 import com.project.project5.redis.BasePrefix;
 
 /**
- * Shanghai yejia Diaital Technology Co.,Ltd.
+ * Shanghai *** Technology Co.,Ltd.
  *
- * @author chenhongde
+ * @author RookieDe
  * @ClassName TokenKey
  * @date 2020/4/13 18:46
  */

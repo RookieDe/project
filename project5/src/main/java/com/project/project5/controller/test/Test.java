@@ -6,6 +6,7 @@ import com.project.project5.controller.base.BaseController;
 import com.project.project5.entity.Response;
 import com.project.project5.service.TestService;
 import com.project.project5.util.ResultUtils;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ import javax.annotation.Resource;
  * @date 2020/4/2 11:02
  */
 @RestController
+@Api(value = "", description = "测试类相关接口（RookieDe）")
 public class Test extends BaseController {
 
     @Resource(name = "testService")
