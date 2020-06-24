@@ -1,8 +1,9 @@
-package com.project.project5.service;
+package com.project.project5.service.impl;
 
 import com.project.project5.config.InitConfig;
 import com.project.project5.config.listener.event.TestEvent;
 import com.project.project5.dto.testDTO.request.EventRequest;
+import com.project.project5.service.ProjectPermissionFeign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,9 @@ import org.springframework.stereotype.Service;
  */
 @Service("testService")
 public class TestService {
+
+    @Autowired
+    private ProjectPermissionFeign feign;
 
     @Autowired
     private ApplicationEventPublisher applicationEventPublisher;

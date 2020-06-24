@@ -30,7 +30,7 @@ import java.util.List;
 @EnableSwagger2
 public class SwaggerConfig {
 
-    @Value("${rookie.swagger.open}")
+    @Value("${project.swagger.open}")
     private Boolean openSwagger;
 
     List<ResponseMessage> swaggerList = new ArrayList<ResponseMessage>(){

@@ -4,14 +4,13 @@ import com.project.project5.controller.base.BaseController;
 import com.project.project5.entity.Response;
 import com.project.project5.entity.mongodb.Book;
 import com.project.project5.enums.ExceptionEnums;
-import com.project.project5.service.MongoTestService;
+import com.project.project5.service.impl.MongoTestService;
 import com.project.project5.util.ResultUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
