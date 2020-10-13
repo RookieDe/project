@@ -6,9 +6,9 @@ import com.rabbitmq.client.*;
 import java.io.IOException;
 
 /**
- * Shanghai yejia Diaital Technology Co.,Ltd.
+ * Shanghai *** Technology Co.,Ltd.
  *
- * @author chenhongde
+ * @author RookieDe
  * @ClassName consumer
  * @date 2020/9/28 18:43
  */

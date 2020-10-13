@@ -7,9 +7,9 @@ import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
 /**
- * Shanghai yejia Diaital Technology Co.,Ltd.
+ * Shanghai *** Technology Co.,Ltd.
  *
- * @author chenhongde
+ * @author RookieDe
  * @ClassName RabbitConnection
  * @date 2020/9/29 9:57
  */
