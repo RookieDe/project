@@ -1,9 +1,10 @@
-package com.project.rabbitmqapi.quickstart;
+package com.project.rabbitmqapi.quickstart.message;
 
 import com.project.rabbitmqapi.config.RabbitConnection;
 import com.rabbitmq.client.*;
 
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * Shanghai *** Technology Co.,Ltd.
@@ -51,6 +52,9 @@ public class Consumer {
                     sb.append((char) b);
                 }
                 System.err.println(sb.toString());
+                Map<String, Object> headers = properties.getHeaders();
+
+                System.err.println(headers.get("head1"));
                 //channel.basicAck(envelope.getDeliveryTag(), false);//这个可以确认是否处理消息
             }
         });
