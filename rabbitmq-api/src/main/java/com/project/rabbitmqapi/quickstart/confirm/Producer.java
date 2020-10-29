@@ -31,6 +31,9 @@ public class Producer {
         String msg = "Hello,RabbitMQ; Send confirm message!";
         channel.basicPublish(exchangeName,routingkey,null,msg.getBytes());
 
+        /**
+         * confirm，消息确认，发送到队列
+         */
         //添加一个回调确认监听
         channel.addConfirmListener(new ConfirmListener() {
             @Override

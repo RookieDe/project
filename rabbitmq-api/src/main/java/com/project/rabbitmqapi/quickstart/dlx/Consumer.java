@@ -1,9 +1,11 @@
-package com.project.rabbitmqapi.quickstart.ack;
+package com.project.rabbitmqapi.quickstart.dlx;
 
 import com.project.rabbitmqapi.config.RabbitConnection;
 import com.rabbitmq.client.*;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Shanghai yejia Diaital Technology Co.,Ltd.
@@ -18,16 +20,26 @@ public class Consumer {
         Connection connection = RabbitConnection.createConnection();
         Channel channel = connection.createChannel();
 
-        String exchangeName = "test_ack_exchange";
-        String routingKey = "ack.#";
-        String queueName = "test_ack_queue";
+        Map<String,Object> map = new HashMap<>();
+        map.put("x-dead-letter-exchange","dlx.exchange");
 
+        String exchangeName = "test_dlx_exchange";
+        String routingKey = "dlx.#";
+        String queueName = "test_dlx_queue";
+
+        //这是一个普通的队列
         channel.exchangeDeclare(exchangeName,"topic",true,false,null);
-        channel.queueDeclare(queueName,false,false,false,null);
+        //这个arguments属性，要设置到声明队列上
+        channel.queueDeclare(queueName,true,false,false,map);
         channel.queueBind(queueName,exchangeName,routingKey);
 
+        //要进行死信队列声明
+        channel.exchangeDeclare("dlx.exchange","topic",true,false,null);
+        channel.queueDeclare("dlx.queue",true,false,false,null);
+        channel.queueBind("dlx.queue","dlx.exchange","#");
 
-        channel.basicConsume(queueName,false,new DefaultConsumer(channel){
+
+        channel.basicConsume(queueName,true,new DefaultConsumer(channel){
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
                 StringBuilder stringBuilder= new StringBuilder();
@@ -35,12 +47,6 @@ public class Consumer {
                     stringBuilder.append((char)b);
                 }
                 System.err.println(stringBuilder.toString());
-                if ((Integer) properties.getHeaders().get("num") == 0){
-                    //requeue是否放回到消息队列中去
-                    channel.basicNack(envelope.getDeliveryTag(),true,true);
-                }else {
-                    channel.basicAck(envelope.getDeliveryTag(),true);
-                }
             }
         });
 

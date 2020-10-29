@@ -25,6 +25,10 @@ public class Product {
 
         String msg = "Hello RabbitMQ Return Message";
 
+        /**
+         * 消息监听；
+         * 针对broker端的Exchange不存在或者指定的路由key路由不到，监听这些问题
+         */
         channel.addReturnListener((replyCode, replyText, exchange1, routingKey1, properties, body) -> {
 
             System.err.println("----------- return Listener ----------");

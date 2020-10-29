@@ -19,6 +19,10 @@ public class Product {
         Connection connection = RabbitConnection.createConnection();
         Channel channel = connection.createChannel();
 
+        /**
+         * qos
+         * 客户端消息限流
+         */
         String exchangeName = "test_qos_exchange";
         String routingKey = "qos.save";
 

@@ -1,4 +1,4 @@
-package com.project.rabbitmqapi.quickstart.ack;
+package com.project.rabbitmqapi.quickstart.dlx;
 
 import com.project.rabbitmqapi.config.RabbitConnection;
 import com.rabbitmq.client.AMQP;
@@ -6,8 +6,6 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Shanghai yejia Diaital Technology Co.,Ltd.
@@ -22,20 +20,20 @@ public class Product {
         Connection connection = RabbitConnection.createConnection();
         Channel channel = connection.createChannel();
 
-        String exchangeName = "test_ack_exchange";
-        String routingKey = "ack.save";
+        String exchangeName = "test_dlx_exchange";
+        String routingKey = "dlx.save";
+
         /**
-         * ack，客户端有问题，将消息重新放入到队列中去，
+         * dlx
+         * 死信队列：针对消息被拒绝，或者TTL过期，或者消息达到最大长度，放入到死信队列，做一个补偿机制
          */
-        for (int i = 0; i < 20; i++) {
-            Map<String,Object> headers = new HashMap<>(64);
-            headers.put("num",i);
+        for (int i = 0; i < 1; i++) {
             AMQP.BasicProperties basicProperties = new AMQP.BasicProperties().builder()
                     .deliveryMode(2)
                     .contentEncoding("UTF-8")
-                    .headers(headers)
+                    .expiration("10000")
                     .build();
-            String msg = i+"Hello RabbitMQ QOS Message";
+            String msg = "Hello RabbitMQ DLX Message";
             channel.basicPublish(exchangeName,routingKey,true,basicProperties,msg.getBytes());
         }
     }
